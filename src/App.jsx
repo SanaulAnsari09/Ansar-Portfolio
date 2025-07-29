@@ -8,6 +8,7 @@ import YouTube from "./components/sections/YouTube";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
 
+
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);

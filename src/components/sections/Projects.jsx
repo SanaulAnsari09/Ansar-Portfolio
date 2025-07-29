@@ -3,8 +3,8 @@ import projectsData from "../../data/projects";
 
 const Projects = ({ setActiveSection }) => {
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
       onMouseEnter={() => setActiveSection("projects")}
     >
@@ -19,16 +19,14 @@ const Projects = ({ setActiveSection }) => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 ">
           {projectsData.map((project, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
+              className="bg-white dark:bg-gray-900 rounded-2xl box-border shadow-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
             >
               <div className="p-6">
-                <div className="text-6xl mb-4 text-center">
-                  {project.image}
-                </div>
+                <div className="text-6xl mb-4 text-center">{project.image}</div>
                 <h3 className="text-xl font-bold mb-3">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   {project.description}
@@ -58,24 +56,32 @@ const Projects = ({ setActiveSection }) => {
                 </div>
 
                 <div className="flex gap-3">
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.codeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    <Github size={16} />
-                    Code
-                  </a>
+                  {project?.showPrevie && (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
+                  {project?.showCode ? (
+                    <a
+                      href={project.codeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-gray-800 dark:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <Github size={16} />
+                      Code
+                    </a>
+                  ) : (
+                    <p className="flex-1 bg-gray-800 dark:bg-gray-700 text-gray-400 text-xs px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+                      I am not able to show code because of Company policy
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
